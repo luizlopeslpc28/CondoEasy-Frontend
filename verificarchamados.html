@@ -110,7 +110,7 @@
           .then(response => response.json())
           .then(data => {
             if (!data.erro) {
-              const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('tbody')[0];
+              const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('strong')[0];
               tabelaChamados.innerHTML = ''; // Limpa a tabela antes de adicionar os novos dados
               data.CHAMADOS.forEach(chamado => {
                 const td = document.createElement('td');

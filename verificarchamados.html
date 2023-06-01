@@ -88,40 +88,42 @@
     <table class="tabelaFinanceira">
       <tbody>
         <tr>
-          <td><strong>NÚMERO</strong></td>
+          <td><strong>ID</strong></td>
           <td><strong>DESCRIÇÃO</strong></td>
-          <td><strong>DATA</strong></td>
+          <td><strong>DATA ABERTURA</strong></td>
           <td><strong>STATUS</strong></td>
         </tr>
-
-        <tr>
-          <td>000010</td>
-          <td>PISO MOLHADO</td>
-          <td>10/01/23</td>
-          <td>ENCERRADO</td>
-        </tr>
-        <tr>
-            <td>000009</td>
-            <td>DEJETOS DE PET</td>
-            <td>09/01/23</td>
-            <td>EM EXECUÇÃO</td>
-        </tr>
-        
-        <tr>
-            <td>000008</td>
-            <td>RECOLHER LIXO</td>
-            <td>30122022</td>
-            <td>ENCERRADO</td>
-        </tr>
-        <tr>
-            <td>000007</td>
-            <td>LAMPADA QUEIMADA</td>
-            <td>10/01/23</td>
-            <td>ENCERRADO</td>
-        </tr>
-      </tbody>
     </table>
    
+    <script>
+      // Função para carregar os chamados da API
+      function carregarChamados() {
+        fetch('/api/lerChamados')
+          .then(response => response.json())
+          .then(data => {
+            if (!data.erro) {
+              const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('tbody')[0];
+              tabelaChamados.innerHTML = ''; // Limpa a tabela antes de adicionar os novos dados
+              data.CHAMADOS.forEach(chamado => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                  <td>${chamado.idChamados}</td>
+                  <td>${chamado.descricao}</td>
+                  <td>${chamado.dataAbertura}</td>
+                  <td>${chamado.status}</td>
+                `;
+                tabelaChamados.appendChild(tr);
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao carregar os chamados:', error);
+          });
+      }
+  
+      // Chama a função para carregar os chamados quando a página carregar
+      window.onload = carregarChamados;
+    </script>
   </body>
   
 </html>

@@ -110,10 +110,10 @@
           .then(response => response.json())
           .then(data => {
             if (!data.erro) {
-              const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('strong')[0];
+              const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('tbody')[0];
               tabelaChamados.innerHTML = ''; // Limpa a tabela antes de adicionar os novos dados
               data.CHAMADOS.forEach(chamado => {
-                const td = document.createElement('td');
+                const tr = document.createElement('tr');
                 tr.innerHTML = `
                   <td>${chamado.idChamados}</td>
                   <td>${chamado.local}</td>
@@ -127,7 +127,7 @@
                   <td>${chamado.solicitante}</td>
                   <td>${chamado.tipo_usuario}</td>
                 `;
-                tabelaChamados.appendChild(td);
+                tabelaChamados.appendChild(tr);
               });
             }
           })

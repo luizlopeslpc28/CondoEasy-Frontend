@@ -113,12 +113,19 @@
               const tabelaChamados = document.getElementById('tabelaChamados').getElementsByTagName('tbody')[0];
               tabelaChamados.innerHTML = ''; // Limpa a tabela antes de adicionar os novos dados
               data.CHAMADOS.forEach(chamado => {
-                const tr = document.createElement('tr');
+                const tr = document.createElement('td');
                 tr.innerHTML = `
                   <td>${chamado.idChamados}</td>
+                  <td>${chamado.local}</td>
+                  <td>${chamado.apartamento}</td>
+                  <td>${chamado.bloco}</td>
+                  <td>${chamado.ocorrencia}</td>
                   <td>${chamado.descricao}</td>
                   <td>${chamado.dataAbertura}</td>
+                  <td>${chamado.dataFechamento}</td>
                   <td>${chamado.status}</td>
+                  <td>${chamado.solicitante}</td>
+                  <td>${chamado.tipo_usuario}</td>
                 `;
                 tabelaChamados.appendChild(tr);
               });

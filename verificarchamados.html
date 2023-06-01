@@ -88,7 +88,7 @@
     <table id="tabelaChamados" class="tabelaFinanceira">
       <tbody>
         <tr>
-          <td><strong>ID</strong></td>
+          <td><strong>ID CHAMADO</strong></td>
           <td><strong>LOCAL</strong></td>
           <td><strong>APARTAMENTO</strong></td>
           <td><strong>BLOCO</strong></td>
@@ -97,7 +97,10 @@
           <td><strong>DATA ABERTURA</strong></td>
           <td><strong>DATA FECHAMENTO</strong></td>
           <td><strong>STATUS</strong></td>
-          
+          <td><strong>ID USUARIO</strong></td>
+          <td><strong>NOME USUARIO</strong></td>
+          <td><strong>TIPO USUARIO</strong></td>
+
         </tr>
     </table>
    
@@ -112,6 +115,9 @@
               tabelaChamados.innerHTML = ''; // Limpa a tabela antes de adicionar os novos dados
               data.CHAMADOS.forEach(chamado => {
                 const tr = document.createElement('tr');
+                tr.setAttribute('data-usuario-id', chamado.usuarioId);
+                tr.setAttribute('data-nome-usuario', chamado.nomeUsuario);
+                tr.setAttribute('data-tipo-usuario', chamado.tipo_usuario);
                 tr.innerHTML = `
                   <td>${chamado.idChamados}</td>
                   <td>${chamado.local}</td>
